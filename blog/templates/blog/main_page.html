@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Мой блог - {{ request.user }}</h1>
+<a href="{% url 'all_users' %}">Все блоги</a>
+<a href="{% url 'add_news' %}">Добавить новость</a>
+<a href="{% url 'news_page' %}">Новости</a>
+<a href="{% url 'logout' %}">Выйти</a>
+<br><br><br>
+{% for news in main %}
+    <a href="{% url 'single_news' news.id %}"><b>{{ news.title }}</b></a>
+    <br>
+    <i>{{ news.date }}</i>
+    <br><br>
+{% endfor %}
+</body>
+</html>

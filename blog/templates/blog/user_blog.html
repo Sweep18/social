@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3><a href="/">На главную</a></h3>
+<h2>Блог {{ user }}</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if not stat_subscribe %}
+        <button>Подписаться</button>
+    {% else %}
+        <button name="delete">Отписаться</button>
+    {% endif %}
+</form>
+<br>
+{% for blog in blogs %}
+    <a href="{% url 'single_news' blog.id %}"><b>{{ blog.title }}</b></a>
+    <br>
+    <i>{{ blog.date }}</i>
+    <br><br>
+{% endfor %}
+</body>
+</html>

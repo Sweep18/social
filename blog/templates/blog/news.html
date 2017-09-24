@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3><a href="/">На главную</a></h3>
+{% for new in news %}
+    {% if new.user.id in subscribe %}
+        <a href="{% url 'single_news' new.id %}"><b>{{ new.user }} - {{ new.title }}</b></a>
+        <br><br>
+        {% if new.id  in read %}
+            Прочитана
+        {% else %}
+            <a href="{% url 'read_news' new.id %}">Не прочитана</a>
+        {% endif %}
+        <br><br>
+        <i>{{ new.date }}</i>
+        <br><br><br><br>
+    {% endif %}
+{% endfor %}
+
+</body>
+</html>
